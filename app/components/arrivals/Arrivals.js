@@ -16,8 +16,8 @@ export default function Arrivals({ arrivalData }) {
   );
 
   return (
-    <div className="flex items-start py-4 px-6 pe-8">
-      <div className="bg-red text-white rounded-lg text-center w-16 p-3">
+    <div className="flex items-start py-4 px-5 lg:pe-8 lg:px-6">
+      <div className="bg-red text-white rounded-lg text-center w-18 p-3 lg:w-16">
         <p>{arrivalData.ServiceNo}</p>
       </div>
 
