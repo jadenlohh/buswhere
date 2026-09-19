@@ -7,8 +7,8 @@ export default function Navbar() {
         <div className="flex items-center pt-4 px-6">
           <div>
             <svg
-              width="26px"
-              height="26px"
+              width="25px"
+              height="25px"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               fill="none"
@@ -66,7 +66,7 @@ export default function Navbar() {
           </div>
 
           <div>
-            <span className="font-semibold ps-1.5">bus where?</span>
+            <span className="font-semibold ps-1.5">buswhere?</span>
           </div>
         </div>
       </div>

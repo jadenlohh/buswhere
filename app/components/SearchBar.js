@@ -17,7 +17,7 @@ export default function SearchBar({ initialValue, onSearch }) {
 
   return (
     <div className="search-bar">
-      <div className="flex items-center text-base bg-white rounded-full shadow grow px-6 py-4.5 mt-5 lg:mt-6">
+      <div className="flex items-center text-base bg-white rounded-full shadow grow px-6 py-4 mt-5 lg:mt-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"

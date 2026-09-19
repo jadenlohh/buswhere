@@ -38,7 +38,7 @@ export default function Home() {
           {!busStopInfoLoading && busStopInfo !== undefined && (
             <div className="flex items-center border-b border-b-[#F1F1F1] justify-between w-full pb-4.5 px-6">
               <div>
-                <p className="font-semibold">{busStopInfo.name}</p>
+                <p className="font-semibold text-sm lg:text-base">{busStopInfo.name}</p>
                 <p className="text-xs text-grey">
                   {busStopCode} | {busStopInfo.roadName}
                 </p>
@@ -55,8 +55,8 @@ export default function Home() {
                 }}
               >
                 <svg
-                  width="18px"
-                  height="18px"
+                  width="17px"
+                  height="17px"
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
