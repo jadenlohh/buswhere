@@ -18,13 +18,13 @@ export default function Home() {
     isLoading,
     isValidating,
     mutate: refreshBusArrivalData,
-  } = useSWR(`/api/getBusArrival?busStopCode=${busStopCode}`, fetcher, {
+  } = useSWR(`/api/arrivals?code=${busStopCode}`, fetcher, {
     refreshInterval: 30000, // Refresh every 30 seconds
     keepPreviousData: true, // Keep previous data while fetching new data
   });
 
   const { data: busStopInfo, isLoading: busStopInfoLoading } = useSWR(
-    `/api/getBusStopInfo?busStopCode=${busStopCode}`,
+    `/api/stops?code=${busStopCode}`,
     fetcher,
   );
 
