@@ -19,7 +19,7 @@ export async function GET(request) {
     const busStop = await data.json();
 
     if (busStop.value.length === 0) {
-      return new Response(JSON.stringify({ error: "Invalid bus stop code" }), {
+      return new Response(JSON.stringify({ error: "Invalid bus stop code", errorCode: 404 }), {
         status: 404,
         headers: { "Content-Type": "application/json" },
       });

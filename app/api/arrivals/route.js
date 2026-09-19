@@ -3,7 +3,7 @@ export async function GET(request) {
   const busStopCode = searchParams.get("code");
 
   if (!busStopCode) {
-    return new Response(JSON.stringify({ error: "Invalid bus stop code" }), {
+    return new Response(JSON.stringify({ error: "Invalid bus stop code", errorCode: 404 }), {
       status: 404,
       headers: { "Content-Type": "application/json" },
     });
@@ -17,7 +17,7 @@ export async function GET(request) {
   const busArrival = await data.json();
 
   if (busArrival.Services.length === 0) {
-    return new Response(JSON.stringify({ error: "Invalid bus stop code" }), {
+    return new Response(JSON.stringify({ error: "Invalid bus stop code", errorCode: 404 }), {
       status: 404,
       headers: { "Content-Type": "application/json" },
     });

@@ -1,18 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function SearchBar({ initialValue, onSearch }) {
-  const [value, setValue] = useState(initialValue);
-  const inputRef = useRef();
+export default function SearchBar() {
+  const [value, setValue] = useState("");
+  const router = useRouter();
 
   const handleSubmit = () => {
     if (!value) return;
-    onSearch(value)
-    
-    setTimeout(() => {
-      inputRef.current?.blur();
-    }, 30);
+
+    router.push(`?search=${value}`);
   };
 
   return (
@@ -31,10 +29,9 @@ export default function SearchBar({ initialValue, onSearch }) {
         <input
           type="text"
           placeholder="Search Bus Stop"
-          className="w-full ms-2 focus:outline-none placeholder:text-grey placeholder:text-sm"
-          ref={inputRef}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          className="w-full ms-2 focus:outline-none placeholder:text-grey placeholder:text-sm"
           onKeyUp={(e) => {
             if (e.key === "Enter") handleSubmit();
           }}
