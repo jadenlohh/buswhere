@@ -17,11 +17,11 @@ export default function SearchBar({ initialValue, onSearch }) {
 
   return (
     <div className="search-bar">
-      <div className="flex items-center text-base bg-white rounded-full shadow grow px-6 py-4 mt-5 lg:mt-6">
+      <div className="flex items-center text-base bg-white rounded-2xl shadow grow px-5 py-4 mt-5 lg:mt-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="22"
+          width="20px"
+          height="20px"
           fill="#A7A7A7"
           viewBox="0 0 256 256"
         >
@@ -31,7 +31,7 @@ export default function SearchBar({ initialValue, onSearch }) {
         <input
           type="text"
           placeholder="Search Bus Stop"
-          className="w-full ms-2.5 focus:outline-none placeholder:text-grey placeholder:text-sm"
+          className="w-full ms-2 focus:outline-none placeholder:text-grey placeholder:text-sm"
           ref={inputRef}
           value={value}
           onChange={(e) => setValue(e.target.value)}
