@@ -18,7 +18,10 @@ export default function Home() {
     isLoading,
     isValidating,
     mutate: refreshBusArrivalData,
-  } = useSWR(`/api/getBusArrival?busStopCode=${busStopCode}`, fetcher);
+  } = useSWR(`/api/getBusArrival?busStopCode=${busStopCode}`, fetcher, {
+    refreshInterval: 30000, // Refresh every 30 seconds
+    keepPreviousData: true, // Keep previous data while fetching new data
+  });
 
   const { data: busStopInfo, isLoading: busStopInfoLoading } = useSWR(
     `/api/getBusStopInfo?busStopCode=${busStopCode}`,
@@ -33,10 +36,10 @@ export default function Home() {
 
       <SearchBar initialValue={busStopCode} onSearch={setBusStopCode} />
 
-      <div className="bus-arrival-timings bg-white shadow rounded-3xl py-6 mt-5">
+      <div className="bus-arrival-timings bg-white shadow rounded-2xl py-6 mt-5">
         <div>
           {!busStopInfoLoading && busStopInfo !== undefined && (
-            <div className="flex items-center border-b border-b-[#F1F1F1] justify-between w-full pb-4.5 px-6">
+            <div className="flex items-center justify-between w-full pb-1 px-6">
               <div>
                 <p className="font-semibold text-sm lg:text-base">{busStopInfo.name}</p>
                 <p className="text-xs text-grey">
@@ -86,6 +89,8 @@ export default function Home() {
         </div>
 
         <div className="px-6 pe-8">
+
+          {/* Loading state */}
           {isLoading ? (
             <div className="my-auto w-full py-30">
               <div className="flex place-content-center w-full">
@@ -101,18 +106,22 @@ export default function Home() {
                 </svg>
               </div>
             </div>
+
+          // No bus stop found
           ) : busArrivalData.length === 0 ? (
             <div className="my-auto w-full py-30">
               <div className="flex place-content-center text-sm w-full">
                 <p>No bus stop found</p>
               </div>
             </div>
+
+          // Bus arrival data
           ) : (
             busArrivalData.map((bus) => {
               return (
                 <div className="flex py-3.5 first:pt-7" key={bus.ServiceNo}>
                   <div className="bus-number">
-                    <div className="bg-red text-white rounded-lg text-center w-16 p-3">
+                    <div className="bg-red text-white rounded-lg text-center w-15 p-3">
                       <p>{bus.ServiceNo}</p>
                     </div>
                   </div>
@@ -133,6 +142,7 @@ export default function Home() {
                         wheelchairAccessible={
                           bus.NextBus.Feature == "WAB" && true
                         }
+                        visitNumber={bus.NextBus.VisitNumber}
                       />
 
                       <NextArrivalTiming
@@ -142,6 +152,7 @@ export default function Home() {
                         wheelchairAccessible={
                           bus.NextBus2.Feature == "WAB" && true
                         }
+                        visitNumber={bus.NextBus2.VisitNumber}
                       />
 
                       <NextArrivalTiming
@@ -151,6 +162,7 @@ export default function Home() {
                         wheelchairAccessible={
                           bus.NextBus3.Feature == "WAB" && true
                         }
+                        visitNumber={bus.NextBus3.VisitNumber}
                       />
                     </div>
                   </div>
@@ -213,7 +225,7 @@ function RouteInfo({ originCode, destinationCode }) {
     fetcher,
   );
   return (
-    <p className="text-grey text-xs">
+    <p className="text-xs">
       {origin?.name} → {destination?.name}
     </p>
   );
