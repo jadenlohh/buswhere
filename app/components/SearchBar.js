@@ -1,21 +1,87 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
   const [value, setValue] = useState("");
+  const [allBusStops, setAllBusStops] = useState([]);
+  const [showPanel, setShowPanel] = useState(false);
   const router = useRouter();
+  const wrapperRef = useRef(null);
+  const inputRef = useRef(null);
 
-  const handleSubmit = () => {
-    if (!value) return;
+  // Close the results when the user taps or clicks anywhere outside the search bar
+  useEffect(() => {
+    const closeIfOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setShowPanel(false);
+      }
+    };
+    document.addEventListener("pointerdown", closeIfOutside);
+    return () => document.removeEventListener("pointerdown", closeIfOutside);
+  }, []);
 
-    router.push(`?search=${value}`);
+  // Get all bus stops on load
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch("/api/stops", { signal: controller.signal })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((raw) => {
+        const list = Object.entries(raw).map(
+          ([code, [lng, lat, name, road]]) => ({
+            code,
+            lng,
+            lat,
+            name,
+            road,
+            haystack: `${code} ${name} ${road}`.toLowerCase(),
+          }),
+        );
+
+        setAllBusStops(list);
+      })
+      .catch((err) => {
+        if (err.name !== "AbortError") {
+          console.error(err);
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  // Every word typed must appear in the code, name, or road.
+  const results = useMemo(() => {
+    const terms = value.toLowerCase().split(/\s+/).filter(Boolean);
+    if (terms.length === 0) return [];
+    const out = [];
+    for (const stop of allBusStops) {
+      if (terms.every((t) => stop.haystack.includes(t))) {
+        out.push(stop);
+        if (out.length >= 10) break;
+      }
+    }
+    return out;
+  }, [value, allBusStops]);
+
+  const handleSelect = (stop) => {
+    setValue(stop.name);
+    setShowPanel(false);
+
+    inputRef.current?.blur(); // Dismisses the mobile keyboard and drops focus
+    router.push(`?search=${encodeURIComponent(stop.code)}`);
   };
 
   return (
-    <div className="search-bar">
-      <div className="flex items-center text-base bg-white rounded-2xl shadow grow px-5 py-4 mt-5 lg:mt-6">
+    <div
+      ref={wrapperRef}
+      className="search-bar absolute left-0 right-0 mt-6 mx-4 bg-white shadow rounded-2xl overflow-hidden"
+    >
+      <div className="flex items-center px-5 py-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20px"
@@ -27,16 +93,46 @@ export default function SearchBar() {
         </svg>
 
         <input
-          type="text"
-          placeholder="Search Bus Stop"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
           className="w-full ms-2 focus:outline-none placeholder:text-grey placeholder:text-sm"
-          onKeyUp={(e) => {
-            if (e.key === "Enter") handleSubmit();
+          ref={inputRef}
+          type="text"
+          placeholder="Search bus stop"
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+            setShowPanel(true);
           }}
+          onFocus={() => setShowPanel(true)}
         />
       </div>
+
+      {showPanel && value.length !== 0 && (
+        <div className="border-t text-sm shadow border-gray-100 max-h-80 overflow-y-auto">
+          {results.length === 0 ? (
+            <p className="px-5 py-3 text-sm text-gray-500">
+              No bus stops match “{value}”
+            </p>
+          ) : (
+            <ul>
+              {results.map((stop) => (
+                <li key={stop.code}>
+                  <button
+                    type="button"
+                    onClick={() => handleSelect(stop)}
+                    className="block cursor-pointer w-full text-left px-5 py-3 hover:bg-gray-100"
+                  >
+                    <span className="font-medium">{stop.name}</span>
+                    <br />
+                    <span className="text-sm text-gray-500">
+                      {stop.road} • {stop.code}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </div>
   );
 }

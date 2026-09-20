@@ -13,9 +13,8 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 export default function Home({ searchParams }) {
   const busStop = use(searchParams).search;
 
-  // Get bus arrival data
-  const { data, isLoading, isValidating, mutate } = useSWR(
-    `/api/arrivals?code=${busStop}`,
+  const { data, isLoading } = useSWR(
+    busStop ? `/api/arrivals?code=${encodeURIComponent(busStop)}` : null,
     fetcher,
     {
       refreshInterval: 30000, // Refresh every 30 seconds
@@ -23,18 +22,44 @@ export default function Home({ searchParams }) {
     },
   );
 
-  const { data: busStopInfo, isLoading: loadingBusStopInfo } = useSWR(
-    `/api/stops?code=${busStop}`,
+  const { data: busStopInfo } = useSWR(
+    busStop ? `/api/stops?code=${encodeURIComponent(busStop)}` : null,
     fetcher,
   );
 
   return (
-    <main className="h-screen mx-auto p-4 lg:w-2xl">
+    <main className="relative h-screen mx-auto p-4 lg:w-2xl">
       <Navbar />
       <SearchBar />
 
-      <div className="arrival-timings rounded-2xl mt-5">
-        {isLoading ? (
+      <div className="arrival-timings rounded-2xl pt-24">
+        {!busStop ? (
+          <div className="bg-white shadow rounded-2xl flex flex-col place-content-center items-center text-sm w-full py-30">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={36}
+              height={36}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M11 18l-2 -1l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+              <path d="M9 4v13" />
+              <path d="M15 7v5" />
+              <path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+              <path d="M20.2 20.2l1.8 1.8" />
+            </svg>
+
+            <p className="pt-1.5 text-center">
+              Search for a bus stop to <br />
+              get started
+            </p>
+          </div>
+        ) : isLoading || !data ? (
           <div className="loading my-auto w-full py-30">
             <div className="flex place-content-center w-full">
               <svg
@@ -49,8 +74,8 @@ export default function Home({ searchParams }) {
               </svg>
             </div>
           </div>
-        ) : data.errorCode === 404 ? (
-          <div className="not-found bg-white shadow rounded-2xl flex flex-col place-content-center items-center text-sm h-full w-full py-30">
+        ) : data.errorCode === 400 ? (
+          <div className="bg-white shadow rounded-2xl flex flex-col place-content-center items-center text-sm h-full w-full py-30">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={36}
@@ -61,7 +86,32 @@ export default function Home({ searchParams }) {
               strokeWidth={1.5}
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="icon icon-tabler icons-tabler-outline icon-tabler-bus-off"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M15 20l-6 -3l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+              <path d="M9 4v13" />
+              <path d="M15 7v5.5" />
+              <path d="M19 22v.01" />
+              <path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
+            </svg>
+
+            <p className="pt-1.5 text-center">
+              You've entered a invalid <br />
+              bus stop
+            </p>
+          </div>
+        ) : data.errorCode === 404 ? (
+          <div className="bg-white shadow rounded-2xl flex flex-col place-content-center items-center text-sm h-full w-full py-30">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={36}
+              height={36}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M4 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -74,17 +124,20 @@ export default function Home({ searchParams }) {
               <path d="M3 3l18 18" />
             </svg>
 
-            <p className="pt-1">Bus stop not found</p>
+            <p className="pt-1.5 text-center">
+              Uh oh, there's no more buses <br />
+              available
+            </p>
           </div>
         ) : (
           <>
             <div className="bg-white shadow rounded-2xl">
-              <div className="stop-name px-6 pt-6">
+              <div className="stop-name px-5 pt-6 lg:px-6">
                 <p className="font-semibold text-sm lg:text-base">
-                  {busStopInfo.name}
+                  {busStopInfo?.name}
                 </p>
                 <p className="text-xs text-grey">
-                  {busStop} | {busStopInfo.roadName}
+                  {busStop} | {busStopInfo?.roadName}
                 </p>
               </div>
 
