@@ -69,14 +69,16 @@ export default function NextArrivalTiming({
         )}
 
         {visitNumber === "2" && (
-          <span className="bg-grey rounded-full text-xs ms-1 px-1 text-white my-auto">{visitNumber}nd Visit</span>
+          <span className="bg-grey rounded-full text-xs ms-1 px-1 text-white my-auto">
+            {visitNumber}nd Visit
+          </span>
         )}
       </div>
 
       <p className="text-xs text-grey pt-1">
         {estimatedArrival !== "" ? (
           <>
-            <span>ETA {estimatedArrival.slice(0, -8).split("T")[1]} • </span>
+            <span>ETA {estimatedArrival.slice(0, -9).split("T")[1]} • </span>
             <span>{getBusType(busType)}</span>
           </>
         ) : (
