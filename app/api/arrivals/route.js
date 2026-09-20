@@ -16,8 +16,14 @@ export async function GET(request) {
 
   const busArrival = await data.json();
 
-  if (busArrival.Services.length === 0) {
-    return new Response(JSON.stringify({ error: "Invalid bus stop code", errorCode: 404 }), {
+  if (busArrival.Services.length === 0 && !data.ok) {
+    return new Response(JSON.stringify({ error: "Invalid bus stop code", errorCode: 400 }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  else if (busArrival.Services.length === 0 && data.ok) {
+    return new Response(JSON.stringify({ error: "No buses left", errorCode: 404}), {
       status: 404,
       headers: { "Content-Type": "application/json" },
     });
