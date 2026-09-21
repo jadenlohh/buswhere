@@ -78,7 +78,7 @@ export default function Searchbar() {
   return (
     <div
       ref={wrapperRef}
-      className="search-bar text-sm absolute top-20 left-0 right-0 bg-white shadow rounded-2xl overflow-hidden z-10"
+      className="search-bar text-sm absolute top-20 left-0 right-0 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl overflow-hidden z-10 lg:left-4 lg:right-4"
     >
       <div className="flex items-center px-5 py-4.5">
         <svg
@@ -92,7 +92,7 @@ export default function Searchbar() {
         </svg>
 
         <input
-          className="w-full ms-2 focus:outline-none placeholder:text-grey"
+          className="w-full ms-1.5 focus:outline-none placeholder:text-grey"
           ref={inputRef}
           type="text"
           placeholder="Search bus stop"

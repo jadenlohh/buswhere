@@ -12,7 +12,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.className} h-full antialiased`}>
-      <body className="flex h-full justify-center">{children}</body>
+      <body className="flex h-full w-auto justify-center lg:bg-[#F7F7F7]">{children}</body>
     </html>
   );
 }

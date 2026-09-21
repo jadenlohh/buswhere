@@ -31,7 +31,7 @@ export default function Search({ searchParams }) {
       <Navbar />
       <Searchbar />
 
-      <div className="absolute top-38 left-0 right-0">
+      <div className="absolute w-full top-40 lg:left-4 lg:right-4 lg:w-auto ">
         {isLoading || !data ? (
           <div className="loading py-30">
             <div className="flex place-content-center w-full">
@@ -48,7 +48,7 @@ export default function Search({ searchParams }) {
             </div>
           </div>
         ) : data.errorCode === 400 ? (
-          <div className="flex flex-col bg-white shadow rounded-2xl place-content-center items-center text-sm py-30">
+          <div className="flex flex-col bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl place-content-center items-center text-sm py-30">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={36}
@@ -74,7 +74,7 @@ export default function Search({ searchParams }) {
             </p>
           </div>
         ) : data.errorCode === 404 ? (
-          <div className="flex flex-col bg-white shadow rounded-2xl place-content-center items-center text-sm py-30">
+          <div className="flex flex-col bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl place-content-center items-center text-sm py-30">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={36}
@@ -104,9 +104,9 @@ export default function Search({ searchParams }) {
           </div>
         ) : (
           <>
-            <div className="arrival-timings bg-white shadow rounded-2xl ps-5 pe-8 pt-6.5 pb-2 mb-4 lg:ps-6 lg:pe-8">
+            <div className="arrival-timings bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl ps-5 pe-8 pt-6.5 pb-2 mb-4 lg:ps-6 lg:pe-8">
               <div className="stop-name">
-                <p className="font-semibold text-sm lg:text-base">
+                <p className="font-semibold text-sm">
                   {busStopInfo?.name}
                 </p>
                 <p className="text-xs text-grey">
