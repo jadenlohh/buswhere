@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SearchBar() {
+export default function Searchbar() {
   const [value, setValue] = useState("");
   const [allBusStops, setAllBusStops] = useState([]);
   const [showPanel, setShowPanel] = useState(false);
@@ -69,17 +69,16 @@ export default function SearchBar() {
   }, [value, allBusStops]);
 
   const handleSelect = (stop) => {
-    setValue(stop.name);
     setShowPanel(false);
 
     inputRef.current?.blur(); // Dismisses the mobile keyboard and drops focus
-    router.push(`?search=${encodeURIComponent(stop.code)}`);
+    router.push(`/search?q=${encodeURIComponent(stop.code)}`);
   };
 
   return (
     <div
       ref={wrapperRef}
-      className="search-bar absolute left-0 right-0 mt-6 mx-4 bg-white shadow rounded-2xl overflow-hidden"
+      className="search-bar absolute top-20 left-0 right-0 bg-white shadow rounded-2xl overflow-hidden z-10"
     >
       <div className="flex items-center px-5 py-4">
         <svg
@@ -124,7 +123,7 @@ export default function SearchBar() {
                     <span className="font-medium">{stop.name}</span>
                     <br />
                     <span className="text-sm text-gray-500">
-                      {stop.road} • {stop.code}
+                      {stop.road} | {stop.code}
                     </span>
                   </button>
                 </li>
