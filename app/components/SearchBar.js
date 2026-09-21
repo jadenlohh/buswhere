@@ -78,21 +78,21 @@ export default function Searchbar() {
   return (
     <div
       ref={wrapperRef}
-      className="search-bar absolute top-20 left-0 right-0 bg-white shadow rounded-2xl overflow-hidden z-10"
+      className="search-bar text-sm absolute top-20 left-0 right-0 bg-white shadow rounded-2xl overflow-hidden z-10"
     >
-      <div className="flex items-center px-5 py-4">
+      <div className="flex items-center px-5 py-4.5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20px"
-          height="20px"
-          fill="#A7A7A7"
+          width="19px"
+          height="19px"
+          fill="#000000"
           viewBox="0 0 256 256"
         >
           <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
         </svg>
 
         <input
-          className="w-full ms-2 focus:outline-none placeholder:text-grey placeholder:text-sm"
+          className="w-full ms-2 focus:outline-none placeholder:text-grey"
           ref={inputRef}
           type="text"
           placeholder="Search bus stop"
@@ -106,9 +106,9 @@ export default function Searchbar() {
       </div>
 
       {showPanel && value.length !== 0 && (
-        <div className="border-t text-sm shadow border-gray-100 max-h-80 overflow-y-auto">
+        <div className="border-t shadow border-gray-100 max-h-80 overflow-y-auto">
           {results.length === 0 ? (
-            <p className="px-5 py-3 text-sm text-gray-500">
+            <p className="px-5 py-3 text-gray-500">
               No bus stops match “{value}”
             </p>
           ) : (
@@ -122,7 +122,7 @@ export default function Searchbar() {
                   >
                     <span className="font-medium">{stop.name}</span>
                     <br />
-                    <span className="text-sm text-gray-500">
+                    <span className="text-gray-500">
                       {stop.road} | {stop.code}
                     </span>
                   </button>
