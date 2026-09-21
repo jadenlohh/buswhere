@@ -114,7 +114,7 @@ export default function Search({ searchParams }) {
                 </p>
               </div>
 
-              <div className="timings pt-6">
+              <div className="timings pt-3.5">
                 {data.map((bus) => {
                   return <Arrivals key={bus.ServiceNo} arrivalData={bus} />;
                 })}

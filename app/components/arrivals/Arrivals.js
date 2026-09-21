@@ -25,7 +25,7 @@ export default function Arrivals({ arrivalData }) {
         <p>{arrivalData.ServiceNo}</p>
       </div>
 
-      <div className="flex flex-col w-full ms-5">
+      <div className="flex flex-col w-full ms-4">
         <div className="border-b border-b-[#E6E6E6] text-grey pb-1">
           <p className="text-xs">
             {origin?.name} → {destination?.name}
