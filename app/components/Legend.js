@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Legend() {
   return (
-    <div className="legend bg-white rounded-2xl text-xs shadow py-5 px-6 mt-5">
+    <div className="legend bg-white rounded-2xl text-xs shadow py-8 px-5 mb-4 lg:px-6">
         <p>LEGEND</p>
 
         <div className="flex flex-wrap justify-between items-center">

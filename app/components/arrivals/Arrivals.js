@@ -16,13 +16,13 @@ export default function Arrivals({ arrivalData }) {
   );
 
   return (
-    <div className="flex items-start py-4 px-5 lg:pe-8 lg:px-6">
-      <div className="bg-red text-white rounded-lg text-center w-18 p-3 lg:w-16">
+    <div className="flex items-start py-4.5">
+      <div className="bg-red text-white text-sm rounded-lg text-center w-18 p-3 lg:text-base">
         <p>{arrivalData.ServiceNo}</p>
       </div>
 
       <div className="flex flex-col w-full ms-5">
-        <div className="border-b border-b-[#E6E6E6] pb-1">
+        <div className="border-b border-b-[#E6E6E6] text-grey pb-1">
           <p className="text-xs">
             {origin?.name} → {destination?.name}
           </p>

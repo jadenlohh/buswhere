@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
       className={`${inter.className} h-full antialiased`}
     >
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <body>{children}</body>
+      <body className="flex h-full justify-center">{children}</body>
     </html>
   );
 }
