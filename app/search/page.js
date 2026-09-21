@@ -50,22 +50,19 @@ export default function Search({ searchParams }) {
         ) : data.errorCode === 400 ? (
           <div className="flex flex-col bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl place-content-center items-center text-sm py-30">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={36}
-              height={36}
+              width="36"
+              height="36"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
+              strokeWidth={1.25}
               strokeLinecap="round"
               strokeLinejoin="round"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#000000"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M15 20l-6 -3l-6 3v-13l6 -3l6 3l6 -3v7.5" />
-              <path d="M9 4v13" />
-              <path d="M15 7v5.5" />
-              <path d="M19 22v.01" />
-              <path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
+              <path d="M9 19L3.78974 20.7368C3.40122 20.8663 3 20.5771 3 20.1675L3 5.43246C3 5.1742 3.16526 4.94491 3.41026 4.86325L9 3M9 19L14.2103 20.7368C14.5988 20.8663 15 20.5771 15 20.1675L15 5.43246C15 5.1742 14.8347 4.94491 14.5897 4.86325L9 3M9 19L9 3"></path>
+              <path d="M15 5L20.2103 3.26325C20.5988 3.13374 21 3.42292 21 3.83246L21 15"></path>
+              <path d="M17.1213 22.364L19.2427 20.2427M19.2427 20.2427L21.364 18.1213M19.2427 20.2427L17.1213 18.1213M19.2427 20.2427L21.364 22.364"></path>
             </svg>
 
             <p className="pt-1.5 text-center">
@@ -73,52 +70,49 @@ export default function Search({ searchParams }) {
               bus stop
             </p>
           </div>
-        ) : data.errorCode === 404 ? (
-          <div className="flex flex-col bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl place-content-center items-center text-sm py-30">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={36}
-              height={36}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M16.18 16.172a2 2 0 0 0 2.652 2.648" />
-              <path d="M4 17h-2v-11a1 1 0 0 1 1 -1h2m4 0h8c2.761 0 5 3.134 5 7v5h-1m-5 0h-8" />
-              <path d="M16 5l1.5 7h4.5" />
-              <path d="M2 10h8m4 0h3" />
-              <path d="M7 7v3" />
-              <path d="M12 5v3" />
-              <path d="M3 3l18 18" />
-            </svg>
-
-            <p className="pt-1.5 text-center">
-              Uh oh, there's no more buses <br />
-              available
-            </p>
-          </div>
         ) : (
           <>
             <div className="arrival-timings bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl mb-6">
               <div className="stop-name border-b border-gray-100 pt-5.5 pb-5 px-5">
-                <p className="font-semibold text-sm">
-                  {busStopInfo?.name}
-                </p>
+                <p className="font-semibold text-sm">{busStopInfo?.name}</p>
                 <p className="text-sm text-grey">
                   {busStop} | {busStopInfo?.roadName}
                 </p>
               </div>
 
-              <div className="timings pt-3 pb-2 px-7 lg:px-8">
-                {data.map((bus) => {
-                  return <Arrivals key={bus.ServiceNo} arrivalData={bus} />;
-                })}
-              </div>
+              {data.errorCode === 404 ? (
+                <div className="no-buses flex flex-col items-center place-content-center py-30">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={36}
+                    height={36}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.25}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M16.18 16.172a2 2 0 0 0 2.652 2.648" />
+                    <path d="M4 17h-2v-11a1 1 0 0 1 1 -1h2m4 0h8c2.761 0 5 3.134 5 7v5h-1m-5 0h-8" />
+                    <path d="M16 5l1.5 7h4.5" />
+                    <path d="M2 10h8m4 0h3" />
+                    <path d="M7 7v3" />
+                    <path d="M12 5v3" />
+                    <path d="M3 3l18 18" />
+                  </svg>
+
+                  <p className="text-center text-sm">No more buses available</p>
+                </div>
+              ) : (
+                <div className="timings pt-3.5 ps-5 pe-8 pb-2 lg:ps-6 lg:pe-8">
+                  {data.map((bus) => {
+                    return <Arrivals key={bus.ServiceNo} arrivalData={bus} />;
+                  })}
+                </div>
+              )}
             </div>
 
             <Legend />
@@ -130,3 +124,60 @@ export default function Search({ searchParams }) {
     </main>
   );
 }
+
+// ) : data.errorCode === 400 ? (
+<div className="flex flex-col bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl place-content-center items-center text-sm py-30">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={36}
+    height={36}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.5}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M15 20l-6 -3l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+    <path d="M9 4v13" />
+    <path d="M15 7v5.5" />
+    <path d="M19 22v.01" />
+    <path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
+  </svg>
+
+  <p className="pt-1.5 text-center">
+    You've entered a invalid <br />
+    bus stop
+  </p>
+</div>;
+// ) : data.errorCode === 404 ? (
+//   <div className="flex flex-col bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl place-content-center items-center text-sm py-30">
+// <svg
+//   xmlns="http://www.w3.org/2000/svg"
+//   width={36}
+//   height={36}
+//   viewBox="0 0 24 24"
+//   fill="none"
+//   stroke="currentColor"
+//   strokeWidth={1.5}
+//   strokeLinecap="round"
+//   strokeLinejoin="round"
+// >
+//   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+//   <path d="M4 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+//   <path d="M16.18 16.172a2 2 0 0 0 2.652 2.648" />
+//   <path d="M4 17h-2v-11a1 1 0 0 1 1 -1h2m4 0h8c2.761 0 5 3.134 5 7v5h-1m-5 0h-8" />
+//   <path d="M16 5l1.5 7h4.5" />
+//   <path d="M2 10h8m4 0h3" />
+//   <path d="M7 7v3" />
+//   <path d="M12 5v3" />
+//   <path d="M3 3l18 18" />
+// </svg>
+
+// <p className="pt-1.5 text-center">
+//   Uh oh, there's no more buses <br />
+//   available
+// </p>
+//   </div>
+// ) : (
