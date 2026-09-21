@@ -77,10 +77,10 @@ export default function NextArrivalTiming({
 
       <p className="text-xs text-grey">
         {estimatedArrival !== "" ? (
-          <div className="pt-1 lg:pt-1.5">
+          <span className="pt-1 lg:pt-1.5">
             <span>ETA {estimatedArrival.slice(0, -9).split("T")[1]} • </span>
             <span>{getBusType(busType)}</span>
-          </div>
+          </span>
         ) : (
           <span>No Estimate Available</span>
         )}
