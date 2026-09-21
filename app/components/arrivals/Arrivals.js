@@ -7,17 +7,21 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function Arrivals({ arrivalData }) {
   const { data: origin } = useSWR(
-    `/api/stops?code=${arrivalData.NextBus.OriginCode}`,
+    arrivalData.NextBus.OriginCode
+      ? `/api/stops?code=${arrivalData.NextBus.OriginCode}`
+      : null,
     fetcher,
   );
   const { data: destination } = useSWR(
-    `/api/stops?code=${arrivalData.NextBus.DestinationCode}`,
+    arrivalData.NextBus.DestinationCode
+      ? `/api/stops?code=${arrivalData.NextBus.DestinationCode}`
+      : null,
     fetcher,
   );
 
   return (
     <div className="flex items-start py-4.5">
-      <div className="bg-red text-white rounded-lg text-center w-18 p-3">
+      <div className="bg-red text-white text-sm rounded-lg text-center w-16 p-3">
         <p>{arrivalData.ServiceNo}</p>
       </div>
 
