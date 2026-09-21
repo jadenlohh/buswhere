@@ -122,7 +122,7 @@ export default function Searchbar() {
                   >
                     <span className="font-medium">{stop.name}</span>
                     <br />
-                    <span className="text-gray-500">
+                    <span className="text-xs text-gray-500">
                       {stop.road} | {stop.code}
                     </span>
                   </button>
