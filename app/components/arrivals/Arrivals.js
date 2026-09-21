@@ -21,11 +21,11 @@ export default function Arrivals({ arrivalData }) {
 
   return (
     <div className="flex items-start py-4.5">
-      <div className="bg-red text-white text-sm rounded-lg text-center w-16 p-3">
+      <div className="bg-red text-white rounded-lg text-center w-20 p-3">
         <p>{arrivalData.ServiceNo}</p>
       </div>
 
-      <div className="flex flex-col w-full ms-4">
+      <div className="flex flex-col w-full ms-4.5">
         <div className="border-b border-b-[#E6E6E6] text-grey pb-1">
           <p className="text-xs">
             {origin?.name} → {destination?.name}

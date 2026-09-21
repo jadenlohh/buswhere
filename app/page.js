@@ -80,19 +80,27 @@ export default function Home({ count = 10 }) {
         ) : (
           <div className="flex flex-col gap-1.5 justify-center items-center place-content-center text-center h-full">
             <svg
-              width="36"
-              height="36"
+              width={36}
+              height={36}
               viewBox="0 0 24 24"
               fill="none"
-              strokeWidth={1.25}
-              strokeLinecap="round"
-              strokeLinejoin="round"
               xmlns="http://www.w3.org/2000/svg"
+              color="#000000"
+              strokeWidth={1.25}
               stroke="#000000"
             >
-              <path d="M9 19L3.78974 20.7368C3.40122 20.8663 3 20.5771 3 20.1675L3 5.43246C3 5.1742 3.16526 4.94491 3.41026 4.86325L9 3M9 19L14.2103 20.7368C14.5988 20.8663 15 20.5771 15 20.1675L15 5.43246C15 5.1742 14.8347 4.94491 14.5897 4.86325L9 3M9 19L9 3"></path>
-              <path d="M15 5L20.2103 3.26325C20.5988 3.13374 21 3.42292 21 3.83246L21 15"></path>
-              <path d="M17.1213 22.364L19.2427 20.2427M19.2427 20.2427L21.364 18.1213M19.2427 20.2427L17.1213 18.1213M19.2427 20.2427L21.364 22.364"></path>
+              <path d="M16 9.2C16 13.1765 9 20 9 20C9 20 2 13.1765 2 9.2C2 5.22355 5.13401 2 9 2C12.866 2 16 5.22355 16 9.2Z"></path>
+              <path
+                d="M9 10C9.55228 10 10 9.55228 10 9C10 8.44772 9.55228 8 9 8C8.44772 8 8 8.44772 8 9C8 9.55228 8.44772 10 9 10Z"
+                fill="#000000"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M16.8791 21.1213L19.0005 19M21.1218 16.8787L19.0005 19M19.0005 19L16.8791 16.8787M19.0005 19L21.1218 21.1213"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
             </svg>
 
             <p className="text-sm">

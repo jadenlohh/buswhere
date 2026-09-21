@@ -104,17 +104,17 @@ export default function Search({ searchParams }) {
           </div>
         ) : (
           <>
-            <div className="arrival-timings bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl ps-5 pe-8 pt-6.5 pb-2 mb-4 lg:ps-6 lg:pe-8">
-              <div className="stop-name">
+            <div className="arrival-timings bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl mb-6">
+              <div className="stop-name border-b border-gray-100 pt-5.5 pb-5 px-5">
                 <p className="font-semibold text-sm">
                   {busStopInfo?.name}
                 </p>
-                <p className="text-xs text-grey">
+                <p className="text-sm text-grey">
                   {busStop} | {busStopInfo?.roadName}
                 </p>
               </div>
 
-              <div className="timings pt-3.5">
+              <div className="timings pt-3 pb-2 px-7 lg:px-8">
                 {data.map((bus) => {
                   return <Arrivals key={bus.ServiceNo} arrivalData={bus} />;
                 })}

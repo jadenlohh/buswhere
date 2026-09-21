@@ -152,11 +152,11 @@ export default function NearestStops({
         id="slide-up-sheet"
         onPointerDown={onPointerDown}
         style={{ transform }}
-        className={`fixed mx-auto inset-x-0 bottom-0 z-9999 flex flex-col bg-white will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
+        className={`fixed mx-auto inset-x-0 bottom-0 z-9999 flex flex-col bg-white rounded-t-[2.5rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
           dragY !== null
             ? "transition-none"
             : "transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
-        } ${open ? "rounded-t-3xl shadow-[0_-20px_60px_rgba(0,0,0,0.1)]" : "rounded-t-[2.8rem] shadow-[0_-8px_32px_rgba(0,0,0,0.1)] lg:rounded-[2.5rem]"}`}
+        } ${open ? "shadow-[0_-20px_90px_rgba(0,0,0,0.12)]" : "shadow-[0_-8px_32px_rgba(0,0,0,0.1)]"}`}
       >
         <button
           type="button"
@@ -166,12 +166,12 @@ export default function NearestStops({
             if (!suppressClick.current) applyOpen(!openRef.current);
           }}
           style={{ height: peekHeight, touchAction: "none" }}
-          className="flex shrink-0 cursor-grab select-none flex-col items-center justify-center gap-2 active:cursor-grabbing"
+          className="flex shrink-0 cursor-grab select-none flex-col border-b border-gray-100 items-center justify-center gap-2 active:cursor-grabbing"
         >
-          <span className="h-1 w-10 rounded-full bg-neutral-300 py-0.5 mt-4.5" />
+          <span className="h-1 w-10 rounded-full bg-neutral-300" />
 
-          <div className="text-left w-full border-b border-gray-100 px-7 pt-3 pb-5">
-            <p className="font-medium text-sm">Nearest Bus Stops</p>
+          <div className="text-left w-full px-7">
+            <p className="font-semibold text-sm">Nearby Bus Stops</p>
             <p className="text-sm text-grey">Find bus stops near you</p>
           </div>
         </button>
