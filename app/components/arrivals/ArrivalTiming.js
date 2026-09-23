@@ -32,8 +32,8 @@ export default function NextArrivalTiming({
   }
 
   return (
-    <div className="arrival-time pt-4 lg:pt-2">
-      <div className="flex h-9">
+    <div className="arrival-time flex flex-col gap-1.5 pt-4 lg:pt-2">
+      <div className="flex h-8 lg:h-10">
         {busLoad === "SEA" && (
           <div className="border-2 border-green-600 rounded-full me-2.5"></div>
         )}
@@ -46,7 +46,7 @@ export default function NextArrivalTiming({
           <div className="border-2 border-red-600 rounded-full me-2.5"></div>
         )}
 
-        <h1 className="text-2xl font-semibold my-auto">
+        <h1 className="text-xl font-semibold my-auto">
           {getBusArrivalTime(estimatedArrival)}
 
           {getBusArrivalTime(estimatedArrival) !== "Arr" &&
@@ -75,7 +75,7 @@ export default function NextArrivalTiming({
         )}
       </div>
 
-      <p className="text-xs text-grey pt-1">
+      <p className="text-xs text-grey">
         {estimatedArrival !== "" ? (
           <>
             <span>ETA {estimatedArrival.slice(0, -9).split("T")[1]} • </span>
