@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 export default function NearestStops({
   children,
-  peekHeight = 96,
+  peekHeight = 86,
   heightClass = "h-[70dvh]",
 }) {
   const sheetRef = useRef(null);
@@ -155,7 +155,7 @@ export default function NearestStops({
         className={`fixed mx-auto inset-x-0 bottom-0 z-9999 flex flex-col bg-white rounded-t-[2.5rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
           dragY !== null
             ? "transition-none"
-            : "transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+            : "transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
         } ${open ? "shadow-[0_-20px_90px_rgba(0,0,0,0.12)]" : "shadow-[0_-8px_32px_rgba(0,0,0,0.1)]"}`}
       >
         <button
@@ -166,9 +166,9 @@ export default function NearestStops({
             if (!suppressClick.current) applyOpen(!openRef.current);
           }}
           style={{ height: peekHeight, touchAction: "none" }}
-          className="flex shrink-0 cursor-grab select-none flex-col border-b border-gray-100 items-center justify-center gap-2 active:cursor-grabbing"
+          className="flex shrink-0 cursor-grab select-none flex-col items-center justify-center gap-3 active:cursor-grabbing"
         >
-          <span className="h-1 w-10 rounded-full bg-neutral-300" />
+          <span className="h-1 w-8 rounded-full bg-neutral-300" />
 
           <div className="text-left w-full px-7">
             <p className="font-semibold text-sm">Nearby Bus Stops</p>

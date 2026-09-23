@@ -78,9 +78,9 @@ export default function Searchbar() {
   return (
     <div
       ref={wrapperRef}
-      className="search-bar text-sm absolute top-20 left-0 right-0 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] rounded-xl overflow-hidden z-10 lg:left-4 lg:right-4"
+      className="search-bar text-sm bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-xl overflow-hidden z-999"
     >
-      <div className="flex items-center px-5 py-4.5">
+      <div className="flex items-center px-5 py-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="19px"

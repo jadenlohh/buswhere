@@ -46,7 +46,7 @@ export default function NextArrivalTiming({
           <div className="border-2 border-red-600 rounded-full me-2.5"></div>
         )}
 
-        <h1 className="text-2xl font-semibold my-auto">
+        <h1 className="text-xl font-semibold my-auto">
           {getBusArrivalTime(estimatedArrival)}
 
           {getBusArrivalTime(estimatedArrival) !== "Arr" &&

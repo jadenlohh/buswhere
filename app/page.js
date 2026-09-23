@@ -51,7 +51,10 @@ export default function Home({ count = 10 }) {
   return (
     <main className="relative w-full mx-4 lg:w-2xl">
       <Navbar />
-      <Searchbar />
+      
+      <div className="absolute top-20 left-0 right-0 z-10 lg:left-4 lg:right-4">
+        <Searchbar />
+      </div>
 
       <NearestStops>
         {!error ? (
