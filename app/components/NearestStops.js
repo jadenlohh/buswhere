@@ -171,7 +171,7 @@ export default function NearestStops({
           <span className="h-1 w-8 rounded-full bg-neutral-300" />
 
           <div className="text-left w-full px-7">
-            <p className="font-semibold text-sm">Nearby Bus Stops</p>
+            <p className="font-semibold text-sm">Bus Stops Nearby</p>
             <p className="text-sm text-grey">Find bus stops near you</p>
           </div>
         </button>

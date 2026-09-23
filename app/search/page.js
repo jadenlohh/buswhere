@@ -110,7 +110,7 @@ export default function Search({ searchParams }) {
                   <p className="text-center text-sm">No more buses available</p>
                 </div>
               ) : (
-                <div className="timings ps-5 pe-8 pb-2 lg:ps-6 lg:pe-8">
+                <div className="timings ps-5 pe-8 pb-2 lg:px-8">
                   {data.map((bus) => {
                     return <Arrivals key={bus.ServiceNo} arrivalData={bus} />;
                   })}
