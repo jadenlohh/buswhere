@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SearchBar() {
+export default function Searchbar() {
   const [value, setValue] = useState("");
   const [allBusStops, setAllBusStops] = useState([]);
   const [showPanel, setShowPanel] = useState(false);
@@ -69,31 +69,30 @@ export default function SearchBar() {
   }, [value, allBusStops]);
 
   const handleSelect = (stop) => {
-    setValue(stop.name);
     setShowPanel(false);
 
     inputRef.current?.blur(); // Dismisses the mobile keyboard and drops focus
-    router.push(`?search=${encodeURIComponent(stop.code)}`);
+    router.push(`/search?q=${encodeURIComponent(stop.code)}`);
   };
 
   return (
     <div
       ref={wrapperRef}
-      className="search-bar absolute left-0 right-0 mt-6 mx-4 bg-white shadow rounded-2xl overflow-hidden"
+      className="search-bar text-sm bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-xl overflow-hidden z-999"
     >
       <div className="flex items-center px-5 py-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20px"
-          height="20px"
-          fill="#A7A7A7"
+          width="19px"
+          height="19px"
+          fill="#000000"
           viewBox="0 0 256 256"
         >
           <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
         </svg>
 
         <input
-          className="w-full ms-2 focus:outline-none placeholder:text-grey placeholder:text-sm"
+          className="w-full ms-1.5 focus:outline-none placeholder:text-grey"
           ref={inputRef}
           type="text"
           placeholder="Search bus stop"
@@ -107,9 +106,9 @@ export default function SearchBar() {
       </div>
 
       {showPanel && value.length !== 0 && (
-        <div className="border-t text-sm shadow border-gray-100 max-h-80 overflow-y-auto">
+        <div className="border-t shadow border-gray-100 max-h-80 overflow-y-auto">
           {results.length === 0 ? (
-            <p className="px-5 py-3 text-sm text-gray-500">
+            <p className="px-5 py-3 text-gray-500">
               No bus stops match “{value}”
             </p>
           ) : (
@@ -123,8 +122,8 @@ export default function SearchBar() {
                   >
                     <span className="font-medium">{stop.name}</span>
                     <br />
-                    <span className="text-sm text-gray-500">
-                      {stop.road} • {stop.code}
+                    <span className="text-xs text-gray-500">
+                      {stop.road} | {stop.code}
                     </span>
                   </button>
                 </li>
