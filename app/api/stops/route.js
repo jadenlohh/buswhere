@@ -7,31 +7,34 @@ export async function GET(request) {
     return Response.json(busStops);
   }
 
-  const code = searchParams.get("code")?.trim();
+  const code = searchParams.get("code");
 
   if (!code) {
-    return Response.json(
-      { error: "Missing bus stop code", errorCode: 404 },
-      { status: 400 },
+    return new Response(
+      JSON.stringify({ error: "Missing bus stop code", errorCode: 404 }),
+      { status: 404, headers: { "Content-Type": "application/json" } },
     );
   }
 
-  const res = await fetch(
-    `https://datamall2.mytransport.sg/ltaodataservice/BusStops?BusStopCode=${encodeURIComponent(code)}`,
+  const data = await fetch(
+    `https://datamall2.mytransport.sg/ltaodataservice/BusStops?BusStopCode=${code}`,
     { headers: { AccountKey: process.env.API_KEY } },
   );
-  const body = await res.json().catch(() => null);
 
-  // Invalid bus stop code
-  if (body.value.length === 0) {
-    return Response.json(
-      { error: "Invalid bus stop code", errorCode: 404 },
-      { status: 404 },
+  const busStop = await data.json();
+
+  if (busStop.value.length === 0) {
+    return new Response(
+      JSON.stringify({ error: "Invalid bus stop code", errorCode: 400 }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  } else {
+    return new Response(
+      JSON.stringify({
+        name: busStop.value[0].Description,
+        roadName: busStop.value[0].RoadName,
+      }),
+      { status: 200, headers: { "Content-Type": "application/json" } },
     );
   }
-
-  return Response.json({
-    name: body.value[0].Description,
-    roadName: body.value[0].RoadName,
-  });
 }
