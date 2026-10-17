@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 export default function NearestStops({
   children,
-  peekHeight = 95,
+  peekHeight = 94,
   heightClass = "h-[76dvh]",
 }) {
   const sheetRef = useRef(null);
@@ -152,7 +152,7 @@ export default function NearestStops({
         id="slide-up-sheet"
         onPointerDown={onPointerDown}
         style={{ transform }}
-        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
+        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-xl ${heightClass} ${
           dragY !== null
             ? "transition-none"
             : "transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
@@ -166,9 +166,9 @@ export default function NearestStops({
             if (!suppressClick.current) applyOpen(!openRef.current);
           }}
           style={{ height: peekHeight, touchAction: "none" }}
-          className="flex shrink-0 cursor-grab select-none flex-col border-b border-gray-100 items-center gap-4 active:cursor-grabbing"
+          className={`flex shrink-0 cursor-grab select-none flex-col items-center gap-3 active:cursor-grabbing ${open ?"border-b border-gray-100" : ""} lg:gap-2.5`}
         >
-          <span className="h-0.5 w-8 rounded-full bg-black mt-4" />
+          <span className="h-0.5 w-8 rounded-full bg-grey mt-4" />
 
           <div className="text-left w-full px-7 mt-1">
             <p className="font-semibold text-sm">Bus Stops Nearby</p>
