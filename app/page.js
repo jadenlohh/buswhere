@@ -51,9 +51,23 @@ export default function Home({ count = 10 }) {
   return (
     <main className="relative w-full mx-4 lg:w-2xl">
       <Navbar />
-      
+
       <div className="absolute top-20 left-0 right-0 z-10 lg:left-4 lg:right-4">
         <Searchbar />
+      </div>
+
+      <div className="absolute flex flex-col shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08) text-center justify-center items-center place-content-center rounded-xl top-40 left-0 right-0 h-90 lg:left-4 lg:right-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="36"
+          height="36"
+          fill="#000000"
+          viewBox="0 0 256 256"
+        >
+          <path d="M34,64a6,6,0,0,1,6-6H216a6,6,0,0,1,0,12H40A6,6,0,0,1,34,64Zm6,70h64a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12Zm80,52H40a6,6,0,0,0,0,12h80a6,6,0,0,0,0-12Zm126-42c0,35.3-49.22,60.32-51.32,61.37a6,6,0,0,1-5.36,0C187.22,204.32,138,179.3,138,144a30,30,0,0,1,54-18,30,30,0,0,1,54,18Zm-12,0a18,18,0,0,0-36,0,6,6,0,0,1-12,0,18,18,0,0,0-36,0c0,14.15,11.78,27,21.67,35.25A138.82,138.82,0,0,0,192,193.19a138,138,0,0,0,20.33-13.94C222.22,171,234,158.15,234,144Z"></path>
+        </svg>
+
+        <p className="text-sm mt-0.5">Add bus stops to your favourites<br /> to view them here</p>
       </div>
 
       <NearestStops>
