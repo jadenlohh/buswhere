@@ -98,7 +98,7 @@ export default function Home({ count = 10 }) {
         FAVOURITES
       </h1>
 
-      <div className="absolute top-48 left-0 right-0 h-90 overflow-y-auto lg:left-4 lg:right-4">
+      <div className="absolute rounded-2xl top-48 left-0 right-0 h-100 overflow-y-auto lg:left-4 lg:right-4">
         {favourites.length === 0 ? (
           <div className="flex flex-col h-full items-center place-content-center text-center">
             <svg
@@ -123,11 +123,11 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex bg-white rounded-lg justify-between mt-1 p-4"
+                  className="flex justify-between bg-white mt-1.5 rounded-md p-4"
                 >
                   <div className="flex flex-col">
                     <span className="font-medium text-sm">{s.name}</span>
-                    <span className="text-sm text-grey">
+                    <span className="text-[0.8rem] text-grey">
                       {s.road} | {s.code}
                     </span>
                   </div>
@@ -141,12 +141,12 @@ export default function Home({ count = 10 }) {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width={25}
-                      height={25}
+                      width={24}
+                      height={24}
                       viewBox="0 0 24 24"
                       fill="#FFD700"
                       stroke="#FFD700"
-                      strokeWidth={1.25}
+                      strokeWidth={1}
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className="transition-colors duration-150 ease-in"
@@ -172,7 +172,7 @@ export default function Home({ count = 10 }) {
                 >
                   <span>
                     <span className="font-medium text-sm">{s.name}</span>
-                    <span className="block text-sm text-grey">
+                    <span className="block text-[0.8rem] text-grey">
                       {s.road} | {s.code}
                     </span>
                   </span>
