@@ -94,11 +94,11 @@ export default function Home({ count = 10 }) {
         <Searchbar />
       </div>
 
-      <h1 className="absolute top-42 text-xs left-0 right-0 h-90 text-grey lg:left-4 lg:right-4">
+      <h1 className="absolute top-42 text-xs left-0 right-0 h-90 lg:left-4 lg:right-4">
         FAVOURITES
       </h1>
 
-      <div className="absolute rounded-2xl top-48 left-0 right-0 h-100 overflow-y-auto lg:left-4 lg:right-4">
+      <div className="absolute top-48 left-0 right-0 h-100 overflow-y-auto lg:left-4 lg:right-4">
         {favourites.length === 0 ? (
           <div className="flex flex-col h-full items-center place-content-center text-center">
             <svg
@@ -123,11 +123,11 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex bg-white justify-between border border-[#dddddd] mt-1.5 rounded-2xl p-4"
+                  className="flex bg-white justify-between border border-[#eeeeee] mt-1.5 rounded-xl px-4 py-4.5"
                 >
                   <div className="flex flex-col">
                     <p className="font-semibold text-sm">{s.name}</p>
-                    <p className="text-[0.8rem] mt-0.5">
+                    <p className="text-[0.8rem] text-grey">
                       {s.road} | {s.code}
                     </p>
                   </div>
@@ -172,7 +172,7 @@ export default function Home({ count = 10 }) {
                 >
                   <span>
                     <span className="font-semibold text-sm">{s.name}</span>
-                    <span className="block text-[0.8rem]">
+                    <span className="block text-[0.8rem] text-grey">
                       {s.road} | {s.code}
                     </span>
                   </span>
