@@ -152,7 +152,7 @@ export default function NearestStops({
         id="slide-up-sheet"
         onPointerDown={onPointerDown}
         style={{ transform }}
-        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-xl ${heightClass} ${
+        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
           dragY !== null
             ? "transition-none"
             : "transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
