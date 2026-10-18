@@ -123,7 +123,7 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex bg-white justify-between border border-[#dddddd] mt-1.5 rounded-2xl px-4 py-4.5"
+                  className="flex bg-white justify-between border border-[#dddddd] mt-1.5 rounded-2xl p-4"
                 >
                   <div className="flex flex-col">
                     <p className="font-semibold text-sm">{s.name}</p>
@@ -168,14 +168,15 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex items-center justify-between px-7 py-2.5 hover:bg-gray-100"
+                  className="flex items-center justify-between px-7 py-3 hover:bg-gray-100"
                 >
                   <span>
-                    <span className="font-medium text-sm">{s.name}</span>
-                    <span className="block text-[0.8rem] text-grey">
+                    <span className="font-semibold text-sm">{s.name}</span>
+                    <span className="block text-[0.8rem]">
                       {s.road} | {s.code}
                     </span>
                   </span>
+                  
                   <span className="text-[0.8rem] text-grey">
                     {s.distance < 1000
                       ? `${Math.round(s.distance)} m`
