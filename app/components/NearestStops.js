@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 export default function NearestStops({
   children,
-  peekHeight = 96,
+  peekHeight = 92,
   heightClass = "h-[76dvh]",
 }) {
   const sheetRef = useRef(null);
@@ -171,7 +171,7 @@ export default function NearestStops({
           <span className="h-0.5 w-8 rounded-full bg-grey mt-4" />
 
           <div className="text-left w-full px-7 mt-1">
-            <p className="font-semibold text-sm">Bus Stops Nearby</p>
+            <p className="font-semibold text-[0.95rem]">Bus Stops Nearby</p>
             <p className="text-[0.8rem]">Find bus stops nearest to you</p>
           </div>
         </button>

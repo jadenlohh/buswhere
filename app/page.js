@@ -168,7 +168,7 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex items-center justify-between px-7 py-3 hover:bg-gray-100"
+                  className="flex items-center justify-between px-7 py-2.5 hover:bg-gray-100"
                 >
                   <span>
                     <span className="font-medium text-sm">{s.name}</span>
@@ -176,7 +176,7 @@ export default function Home({ count = 10 }) {
                       {s.road} | {s.code}
                     </span>
                   </span>
-                  <span className="text-sm text-grey">
+                  <span className="text-[0.8rem] text-grey">
                     {s.distance < 1000
                       ? `${Math.round(s.distance)} m`
                       : `${(s.distance / 1000).toFixed(1)} km`}
