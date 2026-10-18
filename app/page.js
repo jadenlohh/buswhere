@@ -123,11 +123,11 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex justify-between bg-white border-gray-200 border mt-1.5 rounded-2xl px-4 py-4.5"
+                  className="flex bg-white justify-between border border-[#dddddd] mt-1.5 rounded-2xl px-4 py-4.5"
                 >
                   <div className="flex flex-col">
                     <p className="font-semibold text-sm">{s.name}</p>
-                    <p className="text-[0.8rem] text-grey">
+                    <p className="text-[0.8rem] mt-0.5">
                       {s.road} | {s.code}
                     </p>
                   </div>
@@ -144,8 +144,8 @@ export default function Home({ count = 10 }) {
                       width={24}
                       height={24}
                       viewBox="0 0 24 24"
-                      fill="#FFD700"
-                      stroke="#FFD700"
+                      fill="#f9dc5c"
+                      stroke="#f9dc5c"
                       strokeWidth={1}
                       strokeLinecap="round"
                       strokeLinejoin="round"

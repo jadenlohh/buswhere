@@ -96,8 +96,8 @@ export default function Search({ searchParams }) {
                     width={24}
                     height={24}
                     viewBox="0 0 24 24"
-                    fill={active ? "#FFD700" : "none"}
-                    stroke={active ? "#FFD700" : "currentColor"}
+                    fill={active ? "#f9dc5c" : "none"}
+                    stroke={active ? "#f9dc5c" : "currentColor"}
                     strokeWidth={1.25}
                     strokeLinecap="round"
                     strokeLinejoin="round"

@@ -152,11 +152,11 @@ export default function NearestStops({
         id="slide-up-sheet"
         onPointerDown={onPointerDown}
         style={{ transform }}
-        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
+        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] lg:w-2xl ${heightClass} ${
           dragY !== null
             ? "transition-none"
             : "transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-        } ${open ? "shadow-[0_-20px_90px_rgba(0,0,0,0.12)]" : "shadow-[0_-8px_32px_rgba(0,0,0,0.1)]"}`}
+        }`}
       >
         <button
           type="button"
@@ -166,12 +166,12 @@ export default function NearestStops({
             if (!suppressClick.current) applyOpen(!openRef.current);
           }}
           style={{ height: peekHeight, touchAction: "none" }}
-          className={`flex shrink-0 cursor-grab select-none flex-col items-center gap-3 active:cursor-grabbing ${open ?"border-b border-gray-100" : ""} lg:gap-2.5`}
+          className={`flex shrink-0 cursor-grab select-none flex-col items-center gap-3 active:cursor-grabbing ${open ? "border-b border-gray-100" : ""} lg:gap-2.5`}
         >
           <span className="h-0.5 w-8 rounded-full bg-grey mt-4" />
 
           <div className="text-left w-full px-7 mt-1">
-            <p className="font-bold text-[0.95rem]">Nearby Bus Stops</p>
+            <p className="font-semibold text-[0.95rem]">Nearby Bus Stops</p>
             <p className="text-[0.8rem]">Find bus stops nearest to you</p>
           </div>
         </button>

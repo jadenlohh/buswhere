@@ -80,7 +80,7 @@ export default function Searchbar() {
       ref={wrapperRef}
       className={`search-bar text-sm bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden z-999 ${showPanel && value.length !== 0 ? "rounded-2xl" : "rounded-full"}`}
     >
-      <div className="flex items-center px-5 py-4">
+      <div className="flex items-center px-5 py-[1.05rem]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="19px"
