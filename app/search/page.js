@@ -37,7 +37,7 @@ export default function Search({ searchParams }) {
         <Searchbar />
       </div>
 
-      <div className="absolute w-full top-40 lg:left-4 lg:right-4 lg:w-auto ">
+      <div className="absolute w-full top-38 lg:left-4 lg:right-4 lg:w-auto ">
         {isLoading || !data ? (
           <div className="loading py-30">
             <div className="flex place-content-center w-full">
@@ -54,7 +54,7 @@ export default function Search({ searchParams }) {
             </div>
           </div>
         ) : data.errorCode === 400 ? (
-          <div className="flex flex-col bg-white shadow-[0px_4px_12px] shadow-black/10 rounded-xl place-content-center items-center text-sm py-30">
+          <div className="flex flex-col bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-3xl place-content-center items-center text-sm py-30">
             <svg
               width="36"
               height="36"
@@ -78,7 +78,7 @@ export default function Search({ searchParams }) {
           </div>
         ) : (
           <>
-            <div className="arrival-timings bg-white shadow-[0px_4px_12px] shadow-black/10 rounded-xl mb-6">
+            <div className="arrival-timings bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-3xl mb-4">
               <div className="stop-name flex items-center justify-between pt-6.5 pb-3.5 px-6">
                 <div>
                   <p className="font-semibold text-sm">{busStopInfo?.name}</p>
@@ -101,7 +101,6 @@ export default function Search({ searchParams }) {
                     strokeWidth={1.25}
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="transition-colors duration-100 ease-in"
                   >
                     <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873l-6.158 -3.245" />
                   </svg>

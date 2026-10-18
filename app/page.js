@@ -123,13 +123,13 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex justify-between bg-white mt-1.5 rounded-lg p-4"
+                  className="flex justify-between bg-white border-gray-200 border mt-1.5 rounded-2xl px-4 py-4.5"
                 >
                   <div className="flex flex-col">
-                    <span className="font-medium text-sm">{s.name}</span>
-                    <span className="text-[0.8rem] text-grey">
+                    <p className="font-semibold text-sm">{s.name}</p>
+                    <p className="text-[0.8rem] text-grey">
                       {s.road} | {s.code}
-                    </span>
+                    </p>
                   </div>
 
                   <button
