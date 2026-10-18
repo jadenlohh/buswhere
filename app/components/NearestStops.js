@@ -5,8 +5,8 @@ import { createPortal } from "react-dom";
 
 export default function NearestStops({
   children,
-  peekHeight = 86,
-  heightClass = "h-[70dvh]",
+  peekHeight = 95,
+  heightClass = "h-[75dvh]",
 }) {
   const sheetRef = useRef(null);
   const contentRef = useRef(null);
@@ -143,7 +143,7 @@ export default function NearestStops({
         onClick={() => applyOpen(false)}
         aria-hidden="true"
         className={`fixed inset-0 z-9998 ${
-          open ? "pointer-events-auto" : "pointer-events-none"
+          open ? "pointer-events-auto bg-black/45" : "pointer-events-none hidden"
         }`}
       />
 
@@ -152,11 +152,11 @@ export default function NearestStops({
         id="slide-up-sheet"
         onPointerDown={onPointerDown}
         style={{ transform }}
-        className={`fixed mx-auto inset-x-0 bottom-0 z-9999 flex flex-col bg-white rounded-t-[2.5rem] lg:rounded-t-4xl will-change-transform motion-reduce:transition-none lg:w-2xl ${heightClass} ${
+        className={`fixed mx-auto inset-x-0 bottom-0 bg-white z-9999 flex flex-col rounded-t-[2.25rem] lg:rounded-t-4xl will-change-transform shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] lg:w-2xl ${heightClass} ${
           dragY !== null
             ? "transition-none"
             : "transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-        } ${open ? "shadow-[0_-20px_90px_rgba(0,0,0,0.12)]" : "shadow-[0_-8px_32px_rgba(0,0,0,0.1)]"}`}
+        } ${open ? "" : ""}`}
       >
         <button
           type="button"
@@ -166,19 +166,19 @@ export default function NearestStops({
             if (!suppressClick.current) applyOpen(!openRef.current);
           }}
           style={{ height: peekHeight, touchAction: "none" }}
-          className="flex shrink-0 cursor-grab select-none flex-col items-center justify-center gap-3 active:cursor-grabbing"
+          className={`flex shrink-0 cursor-grab select-none flex-col items-center gap-2.5 active:cursor-grabbing ${open ? "border-b border-gray-100" : ""} lg:gap-2.5`}
         >
-          <span className="h-1 w-8 rounded-full bg-neutral-300" />
+          <span className="h-0.5 w-8 rounded-full bg-grey mt-4" />
 
-          <div className="text-left w-full px-7">
-            <p className="font-semibold text-sm">Bus Stops Nearby</p>
-            <p className="text-sm text-grey">Find bus stops near you</p>
+          <div className="text-left w-full px-7 mt-1">
+            <p className="font-semibold text-base">Nearby Bus Stops</p>
+            <p className="text-[0.8rem]">Find bus stops nearest to you</p>
           </div>
         </button>
 
         <div
           ref={contentRef}
-          className="flex-1 overflow-y-scroll overscroll-contain pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
+          className="flex-1 overflow-y-auto bg-gray-50/70 overscroll-contain pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
         >
           {children}
         </div>

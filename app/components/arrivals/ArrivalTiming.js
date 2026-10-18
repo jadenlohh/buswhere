@@ -6,7 +6,7 @@ export default function NextArrivalTiming({
   visitNumber,
 }) {
   function getBusArrivalTime(arrival) {
-    if (!arrival) return "N/A";
+    if (!arrival) return "-";
 
     const arrivalTime = new Date(arrival);
     const currentTime = new Date();
@@ -27,13 +27,13 @@ export default function NextArrivalTiming({
       case "DD":
         return "Double Decker";
       case "BD":
-        return "Bendy";
+        return "Bendy Bus";
     }
   }
 
   return (
     <div className="arrival-time flex flex-col gap-1.5 pt-4 lg:pt-2">
-      <div className="flex h-8 lg:h-10">
+      <div className="flex h-8.5 lg:h-10">
         {busLoad === "SEA" && (
           <div className="border-2 border-green-600 rounded-full me-2.5"></div>
         )}
@@ -46,11 +46,11 @@ export default function NextArrivalTiming({
           <div className="border-2 border-red-600 rounded-full me-2.5"></div>
         )}
 
-        <h1 className="text-xl font-semibold my-auto">
+        <h1 className="text-2xl font-semibold my-auto">
           {getBusArrivalTime(estimatedArrival)}
 
           {getBusArrivalTime(estimatedArrival) !== "Arr" &&
-            getBusArrivalTime(estimatedArrival) !== "N/A" && (
+            getBusArrivalTime(estimatedArrival) !== "-" && (
               <span className="text-sm font-normal"> min</span>
             )}
         </h1>
@@ -75,14 +75,14 @@ export default function NextArrivalTiming({
         )}
       </div>
 
-      <p className="text-xs text-grey">
+      <p className="text-[0.8rem] text-grey">
         {estimatedArrival !== "" ? (
           <>
-            <span>ETA {estimatedArrival.slice(0, -9).split("T")[1]} • </span>
-            <span>{getBusType(busType)}</span>
+            <span className="font-semibold">{getBusType(busType)}</span>
+            <span> • ETA {estimatedArrival.slice(0, -9).split("T")[1]}</span>
           </>
         ) : (
-          <span>No Estimate Available</span>
+          <span>No Data Available</span>
         )}
       </p>
     </div>

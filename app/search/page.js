@@ -6,11 +6,14 @@ import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import Arrivals from "../components/arrivals/Arrivals";
 import Legend from "../components/Legend";
-import Footer from "../components/Footer";
+import useFavourites from "../hooks/useFavourites";
+
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function Search({ searchParams }) {
   const busStop = use(searchParams).q;
+  const { isFavourite, toggleFavourite } = useFavourites();
+  const active = isFavourite(busStop);
 
   const { data, isLoading } = useSWR(
     busStop ? `/api/arrivals?code=${encodeURIComponent(busStop)}` : null,
@@ -34,7 +37,7 @@ export default function Search({ searchParams }) {
         <Searchbar />
       </div>
 
-      <div className="absolute w-full top-40 lg:left-4 lg:right-4 lg:w-auto ">
+      <div className="absolute w-full top-38 lg:left-4 lg:right-4 lg:w-auto ">
         {isLoading || !data ? (
           <div className="loading py-30">
             <div className="flex place-content-center w-full">
@@ -51,7 +54,7 @@ export default function Search({ searchParams }) {
             </div>
           </div>
         ) : data.errorCode === 400 ? (
-          <div className="flex flex-col bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-xl place-content-center items-center text-sm py-30">
+          <div className="flex flex-col bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-3xl place-content-center items-center text-sm py-30">
             <svg
               width="36"
               height="36"
@@ -75,12 +78,33 @@ export default function Search({ searchParams }) {
           </div>
         ) : (
           <>
-            <div className="arrival-timings bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-xl mb-6">
-              <div className="stop-name pt-6.5 pb-3.5 px-5">
-                <p className="font-semibold text-sm">{busStopInfo?.name}</p>
-                <p className="text-sm text-grey">
-                  {busStop} | {busStopInfo?.roadName}
-                </p>
+            <div className="arrival-timings bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-3xl mb-4">
+              <div className="stop-name flex items-center justify-between pt-6.5 pb-3.5 px-6">
+                <div>
+                  <p className="font-semibold text-sm">{busStopInfo?.name}</p>
+                  <p className="text-[0.8rem] text-grey">
+                    {busStop} | {busStopInfo?.roadName}
+                  </p>
+                </div>
+
+                <button
+                  className="cursor-pointer"
+                  onClick={() => toggleFavourite(busStop)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill={active ? "#f9dc5c" : "none"}
+                    stroke={active ? "#f9dc5c" : "currentColor"}
+                    strokeWidth={1.25}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873l-6.158 -3.245" />
+                  </svg>
+                </button>
               </div>
 
               {data.errorCode === 404 ? (
