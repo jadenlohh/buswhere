@@ -1,7 +1,7 @@
-import { DM_Sans } from "next/font/google";
+import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import "./globals.css";
 
-const inter = DM_Sans({ subsets: ["latin"] });
+const inter = Atkinson_Hyperlegible_Next({ subsets: ["latin"] });
 
 export const viewport = {
   width: "device-width",
