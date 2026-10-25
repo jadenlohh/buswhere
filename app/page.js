@@ -123,7 +123,7 @@ export default function Home({ count = 10 }) {
               <li key={s.code}>
                 <Link
                   href={`/search?q=${s.code}`}
-                  className="flex bg-white justify-between border border-[#eeeeee] mt-1.5 rounded-xl px-4 py-4.5"
+                  className="flex bg-white justify-between border border-[#eeeeee] mt-1.5 rounded-xl px-4 py-5"
                 >
                   <div className="flex flex-col">
                     <p className="font-semibold text-sm">{s.name}</p>

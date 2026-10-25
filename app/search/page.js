@@ -79,9 +79,9 @@ export default function Search({ searchParams }) {
         ) : (
           <>
             <div className="arrival-timings bg-white shadow-[0_6px_24px_0_rgba(0,0,0,0.05),0_0_0_1px_rgba(0,0,0,0.08)] rounded-3xl mb-4">
-              <div className="stop-name flex items-center justify-between pt-6.5 pb-3.5 px-6">
+              <div className="stop-name flex items-center justify-between pt-6 pb-4 px-6">
                 <div>
-                  <p className="font-semibold text-sm">{busStopInfo?.name}</p>
+                  <p className="font-semibold">{busStopInfo?.name}</p>
                   <p className="text-[0.8rem] text-grey">
                     {busStop} | {busStopInfo?.roadName}
                   </p>

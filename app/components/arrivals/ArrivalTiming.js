@@ -78,8 +78,8 @@ export default function NextArrivalTiming({
       <p className="text-[0.8rem] text-grey">
         {estimatedArrival !== "" ? (
           <>
-            <span className="font-semibold">{getBusType(busType)}</span>
-            <span> • ETA {estimatedArrival.slice(0, -9).split("T")[1]}</span>
+            <span className="font-medium">{getBusType(busType)}</span>
+            <span> | ETA {estimatedArrival.slice(0, -9).split("T")[1]}</span>
           </>
         ) : (
           <span>No Data Available</span>
